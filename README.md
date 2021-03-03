@@ -1,7 +1,7 @@
-[![npm version](https://badge.fury.io/js/rn-update-apk.svg)](http://badge.fury.io/js/rn-update-apk)
-[![npm total downloads](https://img.shields.io/npm/dt/rn-update-apk.svg)](https://img.shields.io/npm/dt/rn-update-apk.svg)
-[![npm monthly downloads](https://img.shields.io/npm/dm/rn-update-apk.svg)](https://img.shields.io/npm/dm/rn-update-apk.svg)
-[![npm weekly downloads](https://img.shields.io/npm/dw/rn-update-apk.svg)](https://img.shields.io/npm/dw/rn-update-apk.svg)
+[![npm version](https://badge.fury.io/js/@codivoire/react-native-appupdate.svg)](http://badge.fury.io/js/@codivoire/react-native-appupdate)
+[![npm total downloads](https://img.shields.io/npm/dt/@codivoire/react-native-appupdate.svg)](https://img.shields.io/npm/dt/@codivoire/react-native-appupdate.svg)
+[![npm monthly downloads](https://img.shields.io/npm/dm/@codivoire/react-native-appupdate.svg)](https://img.shields.io/npm/dm/@codivoire/react-native-appupdate.svg)
+[![npm weekly downloads](https://img.shields.io/npm/dw/@codivoire/react-native-appupdate.svg)](https://img.shields.io/npm/dw/@codivoire/react-native-appupdate.svg)
 
 
 # React Native Update APK
@@ -11,13 +11,13 @@ Easily check for new APKs and install them in React Native.
 ## Installation
 
 ```bash
-npm install rn-update-apk --save
+npm install @codivoire/react-native-appupdate --save
 ```
 
 Linking automatically with react-native link
 
 ```bash
-react-native link rn-update-apk
+react-native link @codivoire/react-native-appupdate
 react-native link react-native-fs
 ```
 
@@ -40,7 +40,7 @@ Then adapt it into your own app. Getting the versions right is tricky and settin
 ```javascript
 import React, { Component } from "react";
 import { Alert, Button, SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
-import * as UpdateAPK from "rn-update-apk";
+import AppUpdate from "@codivoire/react-native-appupdate";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -53,7 +53,7 @@ export default class App extends Component<Props> {
       allNonSystemApps: [],
     };
 
-    updater = new UpdateAPK.UpdateAPK({
+    updater = AppUpdate.update({
 
       // iOS must use App Store and this is the app ID. This is a sample: "All Birds of Ecuador" (¡Qué lindo!)
       iosAppId: "1104809018", 
@@ -121,9 +121,8 @@ export default class App extends Component<Props> {
   }
 
   async componentDidMount() {
-    UpdateAPK.patchSSLProvider() 
+    AppUpdate.patchSSLProvider()
       .then(ret => {
-
         // This means 
         console.log("SSL Provider Patch proceeded without error");
       })
@@ -131,7 +130,6 @@ export default class App extends Component<Props> {
         console.log("SSL Provider patch failed", rej);
         let message = "Old Android API, and SSL Provider could not be patched.";
         if (rej.message.includes("repairable")) {
-
           // In this particular case the user may even be able to fix it with a Google Play Services update
           message +=
             " This is repairable on this device though." +
@@ -143,16 +141,16 @@ export default class App extends Component<Props> {
         }
       });
 
-      UpdateAPK.getApps().then(apps => {
-        console.log("Installed Apps: ", JSON.stringify(apps));
-        this.setState({ allApps: apps});
-      }).catch(e => console.log("Unable to getApps?", e));
+    AppUpdate.getApps().then(apps => {
+      console.log("Installed Apps: ", JSON.stringify(apps));
+      this.setState({ allApps: apps});
+    }).catch(e => console.log("Unable to getApps?", e));
 
-      UpdateAPK.getNonSystemApps().then(apps => {
-        console.log("Installed Non-System Apps: ", JSON.stringify(apps));
-        this.setState({ allNonSystemApps: apps});
-      }).catch(e => console.log("Unable to getNonSystemApps?", e));
-    }
+    AppUpdate.getNonSystemApps().then(apps => {
+      console.log("Installed Non-System Apps: ", JSON.stringify(apps));
+      this.setState({ allNonSystemApps: apps});
+    }).catch(e => console.log("Unable to getNonSystemApps?", e));
+  }
 
   _onCheckServerVersion = () => {
     console.log("checking for update");
