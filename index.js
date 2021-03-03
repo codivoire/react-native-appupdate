@@ -6,7 +6,7 @@ const RNUpdateAPK = NativeModules.RNUpdateAPK;
 
 let jobId = -1;
 
-export class UpdateAPK {
+export class update {
   constructor(options) {
     this.options = options;
   }
@@ -143,6 +143,8 @@ export class UpdateAPK {
         jobId = -1;
       });
   };
+
+  export new AppUpdater();
 
   getAppStoreVersion = () => {
     if (!this.options.iosAppId) {
