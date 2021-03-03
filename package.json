@@ -1,16 +1,15 @@
 {
-  "name": "rn-update-apk",
+  "nativePackage": true,
+  "name": "@codivoire/react-native-appupdate",
   "version": "4.5.1",
   "description": "Check for new APK versions and update app from React Native",
-  "main": "index.js",
+  "author": "Codivoire (https://github.com/codivoire)",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/codivoire/react-native-appupdate",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikehardy/react-native-update-apk.git"
-  },
-  "scripts": {
-    "dev-sync": "cp -r index.js android ios example/node_modules/rn-update-apk/",
-    "shipit": "np",
-    "test": "echo no tests yet"
+    "url": "git+https://github.com/codivoire/react-native-appupdate.git"
   },
   "keywords": [
     "react-native",
@@ -21,11 +20,12 @@
     "app",
     "apk"
   ],
-  "author": "Mike Hardy (https://github.com/mikehardy)",
-  "contributors": [
-    "parryworld (https://github.com/parryworld)"
-  ],
-  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "dev-sync": "cp -r index.js android ios example/node_modules/@codivoire/react-native-appupdate/",
+    "shipit": "np",
+    "test": "echo no tests yet"
+  },
   "dependencies": {
     "react-native-fs": "^2.16.6"
   },
@@ -34,13 +34,13 @@
     "np": "^6.5.0",
     "prettier": "^2.1.2"
   },
-  "nativePackage": true,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "homepage": "https://github.com/mikehardy/react-native-update-apk",
-  "readmeFilename": "README.md",
+  "contributors": [
+    "Codivoire (https://github.com/codivoire)"
+  ],
   "bugs": {
-    "url": "https://github.com/mikehardy/react-native-update-apk/issues"
+    "url": "https://github.com/codivoire/react-native-appupdate/issues"
   }
 }
