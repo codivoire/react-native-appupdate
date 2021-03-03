@@ -1,7 +1,7 @@
 {
   "nativePackage": true,
   "name": "@codivoire/react-native-appupdate",
-  "version": "4.5.1",
+  "version": "1.0.1",
   "description": "Check for new APK versions and update app from React Native",
   "author": "Codivoire (https://github.com/codivoire)",
   "license": "MIT",
